@@ -1,6 +1,7 @@
 const Note = require('../model/note.model.js')
 const dbConfig = require('../config/database.config.js')
 const mongoose = require('mongoose')
+const os = require('os')
 
 // Retrieve and return connection state to DB.
 exports.status = (req, res) => {
@@ -24,7 +25,13 @@ exports.status = (req, res) => {
   }
 
   res.send(
-    { dbUrl: dbConfig.url, status: dbStateTxt }
+    {
+      dbUrl: dbConfig.url,
+      status: dbStateTxt,
+      os: os.type(),
+      arch: os.arch(),
+      hostname: os.hostname()
+    }
   )
 }
 
