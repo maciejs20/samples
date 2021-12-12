@@ -123,6 +123,10 @@ const processRequest = function (request, response) {
       info.readinessProbe(response)
       break
     case 'hang':
+      // hang app
+      send200(response)
+      response.write('Hanging application forever...')
+      response.end()
       console.log('Hanging application forever...')
       while (true) {
       }
