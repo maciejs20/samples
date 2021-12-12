@@ -58,6 +58,7 @@ if (appConfig.authRequired) {
 }
 
 // uruchamiamy serwer
+console.log(`Webserver app v. ${appConfig.VERSION}`)
 console.log(`Running on: ${os.hostname()} [${os.type()}, ${os.arch()}]`)
 console.log(
   `Starting nodejs server on port ${appConfig.appPort} serving files from "${appConfig.filePath}"`

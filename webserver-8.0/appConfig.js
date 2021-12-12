@@ -5,8 +5,16 @@ const path = require("path");
 const config = require("config");
 const sprintf = require("sprintf-js").sprintf;
 
+const APPVERSION = "8.0";
+
 class AppConfig {
   // ustawienia z pliku muszą być zapisane w config/default.json
+
+  _VERSION;
+  get VERSION() {
+    return this._VERSION;
+  }
+
   _configMode;
   get configMode() {
     return this._configMode;
@@ -87,6 +95,8 @@ class AppConfig {
     // if no value provided - use data from config file
     // if value provided - it has to be process.env
 
+    this._VERSION = APPVERSION;
+
     if (!value) {
       // process config file
       console.log("Setting config mode to FILE");
@@ -137,6 +147,7 @@ class AppConfig {
         process.exit(1);
       }
     } else {
+      
       // process ENV settings
       console.log("Setting config mode to ENV");
       // katalog dla plików

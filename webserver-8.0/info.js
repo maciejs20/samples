@@ -58,7 +58,7 @@ const info = function (response) {
   response.write('<table class="styled-table">\n')
   response.write('<thead><tr><th>Element</th><th>Wartość</th></tr></thead>\n')
   response.write('<tbody>\n')
-  response.write('<tr><td>Version:</td><td>' + '7.1' + '</td></tr>\n')
+  response.write('<tr><td>Version:</td><td>' + appConfig.VERSION + '</td></tr>\n')
   response.write('<tr><td>Platform:</td><td>' + os.platform + '</td></tr>\n')
   response.write('<tr><td>OS Type :</td><td>' + os.type + '</td></tr>\n')
   response.write('<tr><td>Hostname:</td><td>' + os.hostname + '</td></tr>\n')
