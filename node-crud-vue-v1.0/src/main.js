@@ -3,10 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueSessionStorage from 'vue-sessionstorage'
 
-Vue.config.productionTip = false
-Vue.prototype.$backendUrl = 'http://localhost:3000/notes'
-Vue.prototype.$backendStatusUrl = 'http://localhost:3000/status'
+Vue.use(VueSessionStorage)
+
+Vue.prototype.$backendUrl = process.env.BACKENDURL || 'http://localhost:3000/notes'
+Vue.prototype.$backendStatusUrl = process.env.BACKENDSTATUS || 'http://localhost:3000/status'
 
 /* eslint-disable no-new */
 new Vue({
@@ -14,4 +16,4 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
-})
+}).$mount('#app')

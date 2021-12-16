@@ -54,7 +54,18 @@
 // -------------------
 var myUrl = null
 // Data
-var myData = null
+var myData = {
+  notes: null,
+  id: 1,
+  backendUrl: this.$backendUrl,
+  dbStatus: null,
+  dbUrl: null,
+  hostname: null,
+  os: null,
+  arch: null,
+  backendOK: 'disconnected'
+}
+
 // Status Url
 var myStatusUrl = null
 // Error timer
@@ -205,17 +216,7 @@ function addNoteFromEvent (event) {
 export default {
   name: 'NotesApp',
   data () {
-    return {
-      notes: null,
-      id: 1,
-      backendUrl: this.$backendUrl,
-      dbStatus: null,
-      dbUrl: null,
-      hostname: null,
-      os: null,
-      arch: null,
-      backendOK: 'disconnected'
-    }
+    return myData
   },
   created () {
     // initialize variables for functions
