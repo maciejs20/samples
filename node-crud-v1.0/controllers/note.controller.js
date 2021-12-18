@@ -1,5 +1,5 @@
 const Note = require('../model/note.model.js')
-const dbConfig = require('../config/database.config.js')
+// const dbConfig = require('../config/database.config.js')
 const mongoose = require('mongoose')
 const os = require('os')
 
@@ -26,7 +26,7 @@ exports.status = (req, res) => {
 
   res.send(
     {
-      dbUrl: dbConfig.url,
+      // dbUrl: dbConfig.url,
       status: dbStateTxt,
       os: os.type(),
       arch: os.arch(),

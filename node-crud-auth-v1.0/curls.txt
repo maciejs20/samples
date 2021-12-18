@@ -1,0 +1,2 @@
+curl -d "title=note1&content='this is note" -X POST http://localhost:3000/notes
+curl http://localhost:3000/notes

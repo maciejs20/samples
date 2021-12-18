@@ -2,36 +2,59 @@
   <div class="hello" :key="id">
     <div class="errors" id="errors"></div>
     <h1>Witaj w Naszych Notatkach!</h1>
+    <a v-if="$loggedIn">
       <!-- System information -->
       <div id="appConfig" class="diag">
         backend platform: {{this.hostname}}, {{this.arch}}, {{this.os}}<br>
         backend url: {{this.$backendUrl}}, {{this.backendOK}} <br>
         db url: {{this.dbUrl}}, {{this.dbStatus}} <br>
       </div>
+    </a>
+    <!-- Login -->
+    <a v-if="!$loggedIn">
+      <h2 style="padding-top: 40px; margin-bottom: 10px;">Login</h2>
+        <div class="box" style="width: 400px; margin: auto;">
+          <div class="title" id="login">
+            <div style="width: 150px; float: left;">User: </div>
+            <input type="text" id="username" name="username" maxlength="16" style="width: 150px">
+          </div>
+          <div class="title" id="password">
+            <div style="width: 150px; float: left;">Password: </div>
+            <input type="text" id="password" name="password" maxlength="16" style="width: 150px">
+          </div>
+          <div class="tools">
+            <div class="newBtn genButton" id="loginBtn">Send</div>
+          </div>
+      </div>
+    </a>
 
-    <!-- Dodawanie notatek -->
-    <h2 style="padding-top: 40px; margin-bottom: 10px;">Nowa notatka</h2>
-    <div class="box" style="height: 150px; width: 70%; height:80%; margin: auto;">
-        <div class="tools">
-          <div class="newBtn genButton" id="newBtn">Send</div>
+      <a v-if="$loggedIn">
+      <!-- Dodawanie notatek -->
+      <h2 style="padding-top: 40px; margin-bottom: 10px;">Nowa notatka</h2>
+      <div class="box" style="height: 150px; width: 70%; height:80%; margin: auto;">
+          <div class="tools">
+            <div class="newBtn genButton" id="newBtn">Send</div>
+          </div>
+        <div class="title">
+          Tytuł:
+          <input type="text" id="newTitle" name="title" maxlength="30" style="width: 60%;">
         </div>
-      <div class="title">
-        Tytuł:
-        <input type="text" id="newTitle" name="title" maxlength="30" style="width: 60%;">
+        <div class="content">
+          <textarea id="newContent" name="content" maxlength="200" style="width: 80%; height: 80px; text-align: left; padding: 10px; padding-left: 24px;"></textarea>
+        </div>
       </div>
-      <div class="content">
-        <textarea id="newContent" name="content" maxlength="200" style="width: 80%; height: 80px; text-align: left; padding: 10px; padding-left: 24px;"></textarea>
-      </div>
-    </div>
+      </a>
 
     <!-- Przeglądanie notatek -->
     <h2 style="padding-top: 40px; margin-bottom: 0px;">Nasze notatki</h2>
     <div class="center">
       <div class="package" v-for="item in notes" :key="item._id">
         <div class="box" style="float: left;">
-          <div class="tools">
-            <div :id=item._id class="deleteBtn genButton">Delete</div>
-          </div>
+          <a v-if="$loggedIn">
+            <div class="tools">
+              <div :id=item._id class="deleteBtn genButton">Delete</div>
+            </div>
+          </a>
           <div class="title">
             {{ item.title }}
             <div class="date">
@@ -52,7 +75,7 @@
 // URL for backend
 // those are the global variables for our app.
 // -------------------
-var myUrl = null
+var myUrl = 'null'
 // Data
 var myData = {
   notes: null,
@@ -65,12 +88,15 @@ var myData = {
   arch: null,
   backendOK: 'disconnected'
 }
-
+var myVue = null
 // Status Url
 var myStatusUrl = null
+var statusTimer = null
 // Error timer
 var errorTimer = null
 // -------------------
+// auth url
+var myAuthUrl = null
 
 function printErr (er) {
   // show red banned with error message, hide after 5 seconds
@@ -150,6 +176,46 @@ function deleteNoteFromEvent (event) {
   })
 }
 
+function loginFromEvent (event) {
+  // This is delete action for note based on src div id.
+  var elem = this
+  markClick(elem)
+  var username = $('input#username').val()
+  var password = $('input#password').val()
+  console.log(event)
+  console.log('user: ', username, ' pass: ', password)
+  const auth = {
+    username: username,
+    password: password
+  }
+  $.ajax({
+    type: 'POST',
+    data: auth,
+    url: `${myAuthUrl}authorize`,
+    success: function (response) {
+      // clear input
+      console.log(response)
+      if (response.code === 200) {
+        markClick(elem)
+        var sessionId = response.session
+        console.log('Auth successfull. Session id:', sessionId)
+        $('input#username').val('')
+        $('input#password').val('')
+
+        myVue.$cookies.set('sessionId', sessionId)
+      } else {
+        markError(elem)
+        printErr('Login error, check username/password.')
+      }
+    },
+    error: function (err) {
+      markError(elem)
+      console.log('Auth error: ', err)
+    }
+
+  })
+}
+
 function markClick (elem) {
   // mark item clicked, remove marking after 2 seconds
   elem.classList.add('clicked')
@@ -223,18 +289,37 @@ export default {
     // pass reference to external code
     myUrl = this.$backendUrl
     myStatusUrl = this.$backendStatusUrl
-    myData = this
+    myAuthUrl = this.$authUrl
+    // myData = this
+    myVue = this
     updateData()
     updateStatus()
+  },
+  mounted () {
+    // init app buttons
+    console.log('Init buttons...')
+    $('#loginBtn').unbind('click')
+    $('#loginBtn').bind('click', loginFromEvent)
+
+    $('.deleteBtn').unbind('click')
+    $('.deleteBtn').bind('click', deleteNoteFromEvent)
+
+    $('#newBtn').unbind('click')
+    $('#newBtn').bind('click', addNoteFromEvent)
+
+    // $(document).on('click', '.deleteBtn', deleteNoteFromEvent)
+    // $(document).on('click', '#newBtn', addNoteFromEvent)
+    // $(document).on('click', '#loginBtn', loginFromEvent)
   }
 }
 
-// init app buttons
-$(document).on('click', '.deleteBtn', deleteNoteFromEvent)
-$(document).on('click', '#newBtn', addNoteFromEvent)
-
 // update db status
-setInterval(updateStatus, 1000)
+console.log('Start intervals.')
+if (statusTimer !== null) {
+  clearInterval(statusTimer)
+}
+statusTimer = setInterval(updateStatus, 1000)
+
 </script>
 
 <style scoped>

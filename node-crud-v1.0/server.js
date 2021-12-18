@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const log = require('./appLogger.js')
+const mongoose = require('mongoose')
 
 // based on
 // https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/
@@ -30,6 +31,9 @@ const myModName = 'server.js'
 const myVersion = '1.0'
 const myPort = 3000
 
+const dbConfig = {}
+dbConfig.url = process.env.DBURL || 'mongodb://localhost:27017/easy-notes'
+
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -37,9 +41,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // Configuring the database
-const dbConfig = require('./config/database.config.js')
-const mongoose = require('mongoose')
-
 mongoose.Promise = global.Promise
 
 // Connecting to the database
