@@ -15,21 +15,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ratings-v2-mysql-vm
+  name: ratings-v2-mysql
   labels:
     app: ratings
-    version: v2-mysql-vm
+    version: v2-mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: ratings
-      version: v2-mysql-vm
+      version: v2-mysql
   template:
     metadata:
       labels:
         app: ratings
-        version: v2-mysql-vm
+        version: v2-mysql
     spec:
       containers:
       - name: ratings
@@ -41,7 +41,7 @@ spec:
           - name: DB_TYPE
             value: "mysql"
           - name: MYSQL_DB_HOST
-            value: mysqldb.vm.svc.cluster.local
+            value: mysqldb
           - name: MYSQL_DB_PORT
             value: "3306"
           - name: MYSQL_DB_USER
