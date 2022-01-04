@@ -21,7 +21,7 @@ spec:
       containers:
       - name: details
         image: examples-bookinfo-details-v1:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 9080
         securityContext:

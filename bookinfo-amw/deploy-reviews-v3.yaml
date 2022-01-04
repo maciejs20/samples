@@ -21,7 +21,7 @@ spec:
       containers:
       - name: reviews
         image: examples-bookinfo-reviews-v3:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
         - name: LOG_DIR
           value: "/tmp/logs"
