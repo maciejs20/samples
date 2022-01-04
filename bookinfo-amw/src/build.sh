@@ -1,4 +1,4 @@
-REPO="default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/"
+REPO="default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default"
 
 cd details
 IMG="examples-bookinfo-details-v1:1.0"
