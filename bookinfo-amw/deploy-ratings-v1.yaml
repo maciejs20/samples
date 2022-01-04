@@ -20,7 +20,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: ratings
-        image: image-registry.openshift-image-registry.svc:5000/default/examples-bookinfo-ratings-v1:1.0
+        image: examples-bookinfo-ratings-v1:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080

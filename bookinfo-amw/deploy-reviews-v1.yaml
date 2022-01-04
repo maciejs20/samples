@@ -20,7 +20,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: reviews
-        image: image-registry.openshift-image-registry.svc:5000/default/examples-bookinfo-reviews-v1:1.0
+        image: examples-bookinfo-reviews-v1:1.0
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR

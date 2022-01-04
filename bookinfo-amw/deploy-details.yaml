@@ -20,7 +20,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: details
-        image: image-registry.openshift-image-registry.svc:5000/default/examples-bookinfo-details-v1:1.0
+        image: examples-bookinfo-details-v1:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
