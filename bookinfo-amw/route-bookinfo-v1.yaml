@@ -1,0 +1,17 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app: productpage
+    service: productpage
+  name: bookinfo
+spec:
+  host: ""
+  port:
+    targetPort: http
+  to:
+    kind: ""
+    name: productpage
+    weight: null
+status:
