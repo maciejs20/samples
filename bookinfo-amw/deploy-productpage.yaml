@@ -20,7 +20,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: productpage
-        image: examples-bookinfo-productpage-v1:1.0
+        image: examples-bookinfo-productpage-v1:amw
         imagePullPolicy: Always
         ports:
         - containerPort: 9080

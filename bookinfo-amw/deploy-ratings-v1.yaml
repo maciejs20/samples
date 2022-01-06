@@ -20,8 +20,8 @@ spec:
       serviceAccountName: default
       containers:
       - name: ratings
-        image: examples-bookinfo-ratings-v1:1.0
-        imagePullPolicy: IfNotPresent
+        image: examples-bookinfo-ratings-v1:amw
+        imagePullPolicy: Always
         ports:
         - containerPort: 9080
         securityContext:

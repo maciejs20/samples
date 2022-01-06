@@ -20,7 +20,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: reviews
-        image: examples-bookinfo-reviews-v1:1.0
+        image: examples-bookinfo-reviews-v1:amw
         imagePullPolicy: Always
         env:
         - name: LOG_DIR
