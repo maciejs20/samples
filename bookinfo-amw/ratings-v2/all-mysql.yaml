@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
       - name: mysqldb
-        image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/examples-bookinfo-mysqldb:1.16.2
+        image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/examples-bookinfo-mysqldb:1.16.1
         imagePullPolicy: Always
         ports:
         - containerPort: 3306
