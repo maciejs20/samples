@@ -15,6 +15,11 @@ echo "*** ratings v1"
 docker pull docker.io/istio/examples-bookinfo-ratings-v1:${VER}
 docker tag docker.io/istio/examples-bookinfo-ratings-v1:${VER} default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/examples-bookinfo-ratings-v1:${DSTVER}
 
+echo "*** ratings v2"
+docker pull docker.io/istio/examples-bookinfo-ratings-v2:${VER}
+docker tag docker.io/istio/examples-bookinfo-ratings-v2:${VER} default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/examples-bookinfo-ratings-v2:${DSTVER}
+
+
 echo "reviews-v1"
 docker pull docker.io/istio/examples-bookinfo-reviews-v1:${VER}
 docker tag docker.io/istio/examples-bookinfo-reviews-v1:${VER} default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/examples-bookinfo-reviews-v1:${DSTVER}
@@ -44,6 +49,8 @@ echo "ratings-v2"
 docker push default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/examples-bookinfo-ratings-v2:${DSTVER}
 echo "ratings-v1"
 docker push default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/examples-bookinfo-ratings-v1:${DSTVER}
+echo "ratings-v2"
+docker push default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/examples-bookinfo-ratings-v2:${DSTVER}
 echo "reviews-v3"
 docker push default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/examples-bookinfo-reviews-v3:${DSTVER}
 echo "reviews-v2"
