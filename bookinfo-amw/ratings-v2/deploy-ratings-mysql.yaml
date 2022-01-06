@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: ratings
-        image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/examples-bookinfo-ratings-v2:1.0
+        image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/examples-bookinfo-ratings-v2:amw
         imagePullPolicy: IfNotPresent
         env:
           # This assumes you registered your mysql vm as
