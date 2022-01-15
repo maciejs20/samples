@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ex1-deploy
+  name: ex1-rte
+spec:
+  host: ""
+  port:
+    targetPort: 8081
+  to:
+    kind: ""
+    name: ex1
+    weight: null
+status:
