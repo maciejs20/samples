@@ -20,9 +20,9 @@ spec:
       - image: image-registry.openshift-image-registry:5000/defaault/weebserver-env:1.0
         name: webserver-env
         ports:
-        - containerPort: 8080
+        - containerPort: 8040
         resources: {}
         envFrom:
         - configMapRef:
-            name: ex1
+            name: ex2
 status: {}
