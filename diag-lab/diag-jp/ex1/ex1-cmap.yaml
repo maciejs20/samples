@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+FILEDIR: files
+PORT: 8088
+kind: ConfigMap
+metadata:
+creationTimestamp: null
+name: ex1cmap

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ex1-deploy
+  name: ex1-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ex1-deploy
+  strategy: {}
+  template:
+  metadata:
+      creationTimestamp: null
+      labels:
+        app: ex1-deploy
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry:5000/defaault/weebserver-env:1.0
+        name: webserver-env
+        ports:
+        - containerPort: 8080
+        resources: {}
+        envFrom:
+        - configMapRef:
+            name: ex1
+status: {}

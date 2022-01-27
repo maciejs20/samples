@@ -1,0 +1,16 @@
+apiVersion: v1
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ex1-deploy
+  name: ex1-svc
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: ex1deploy
+  type: ClusterIP
+status:
+  loadBalancer: {}
