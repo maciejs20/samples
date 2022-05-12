@@ -23,12 +23,18 @@ const initDB = function (con) {
       if (err) throw err
       console.log('DB selected')
 
-      const sql = 'CREATE TABLE IF NOT EXISTS customers (name VARCHAR(255), address VARCHAR(255)) '
+      const sql = 'DROP TABLE IF NOT EXISTS customers'
       con.query(sql, function (err) {
         if (err) throw err
-        console.log('Table created')
-        insertCustomer('IBM', 'First Way Drive, Santa Ana, USA')
-        insertCustomer('MSZ', 'Polonijna 12, Warszawa, Polska')
+        console.log('Table dropped')
+
+        const sql = 'CREATE TABLE IF NOT EXISTS customers (name VARCHAR(255), address VARCHAR(255)) '
+        con.query(sql, function (err) {
+          if (err) throw err
+          console.log('Table created')
+          insertCustomer('IBM', 'First Way Drive, Santa Ana, USA')
+          insertCustomer('MSZ', 'Polonijna 12, Warszawa, Polska')
+        })
       })
     })
   })
