@@ -10,12 +10,12 @@ const APPVERSION = "8.1";
 class AppConfig {
   // ustawienia z pliku muszą być zapisane w config/default.json
 
-  _VERSION;
+  // _VERSION;
   get VERSION() {
     return this._VERSION;
   }
 
-  _configMode;
+  // _configMode;
   get configMode() {
     return this._configMode;
   }
@@ -33,7 +33,7 @@ class AppConfig {
   }
 
   // ściezka do plików którymi mamy serwować
-  _filePath;
+  // _filePath;
   get filePath() {
     return this._filePath;
   }
@@ -43,7 +43,7 @@ class AppConfig {
   }
 
   // port na którym mamy nasłuchiwać
-  _appPort;
+  // _appPort;
   get appPort() {
     return this._appPort;
   }
@@ -52,7 +52,7 @@ class AppConfig {
     this._appPort = value;
   }
 
-  _username;
+  // _username;
   get username() {
     return this._username;
   }
@@ -61,7 +61,7 @@ class AppConfig {
     this._username = value;
   }
 
-  _password;
+  // _password;
   get password() {
     return this._password;
   }
@@ -72,7 +72,7 @@ class AppConfig {
 
 
   // Czy wymuszamy autoryzację uzytkownikow
-  _authRequired;
+  // _authRequired;
   get authRequired() {
     return this._authRequired;
   }
