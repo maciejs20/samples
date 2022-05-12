@@ -17,12 +17,19 @@ const initDB = function (con) {
   con.query('CREATE DATABASE testdb', function (err) {
     if (err) throw err
     console.log('Database created')
-    const sql = 'CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))'
+
+    const sql = 'USE DATABASE testdb'
     con.query(sql, function (err) {
       if (err) throw err
-      console.log('Table created')
-      insertCustomer('IBM', 'First Way Drive, Santa Ana, USA')
-      insertCustomer('MSZ', 'Polonijna 12, Warszawa, Polska')
+      console.log('DB selected')
+
+      const sql = 'CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))'
+      con.query(sql, function (err) {
+        if (err) throw err
+        console.log('Table created')
+        insertCustomer('IBM', 'First Way Drive, Santa Ana, USA')
+        insertCustomer('MSZ', 'Polonijna 12, Warszawa, Polska')
+      })
     })
   })
 }
@@ -30,8 +37,8 @@ const initDB = function (con) {
 const init = function () {
   con = mysql.createConnection({
     host: 'localhost',
-    user: 'test',
-    password: 'test'
+    user: 'root',
+    password: 'Passw0rd'
   })
 
   con.connect(function (err) {
