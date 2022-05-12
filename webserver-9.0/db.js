@@ -23,7 +23,7 @@ const initDB = function (con) {
       if (err) throw err
       console.log('DB selected')
 
-      const sql = 'DROP TABLE IF NOT EXISTS customers'
+      const sql = 'DROP TABLE IF EXISTS customers'
       con.query(sql, function (err) {
         if (err) throw err
         console.log('Table dropped')
