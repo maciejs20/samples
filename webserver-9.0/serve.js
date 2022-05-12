@@ -4,6 +4,7 @@ const fs = require('fs')
 const url = require('url')
 const path = require('path')
 const info = require('./info.js')
+const db = require('./db.js')
 
 let appConfig
 const setConfig = function (value) {
@@ -130,6 +131,9 @@ const processRequest = function (request, response) {
       console.log('Hanging application forever...')
       while (true) {
       }
+    case 'db':
+      db.getCustomer(urlPath)
+      break
     default:
       serveFile(urlExt, urlPath, targetFile, response)
       break

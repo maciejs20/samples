@@ -55,6 +55,7 @@ const init = function () {
 }
 
 const getCust = function (name) {
+  console.log(`getCust for ${name}`)
   con.query('SELECT * FROM customers WHERE name=' + name, function (err, result) {
     if (err) throw err
     console.log(result)
