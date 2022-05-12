@@ -8,7 +8,7 @@ const { AppConfig } = require('./appConfig.js')
 const info = require('./info.js')
 const args = require('minimist')(process.argv.slice(2))
 const auth = require('http-auth')
-const db = require('db.js')
+const db = require('./db.js')
 
 // konfiguracja programu
 let appConfig
