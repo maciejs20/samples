@@ -14,7 +14,7 @@ const insertCustomer = function (name, address) {
 
 const initDB = function (con) {
   console.log('Preparing database.')
-  con.query('CREATE DATABASE testdb IF NOT EXISTS', function (err) {
+  con.query('CREATE DATABASE IF NOT EXISTS testdb ', function (err) {
     if (err) throw err
     console.log('Database created')
 
@@ -23,7 +23,7 @@ const initDB = function (con) {
       if (err) throw err
       console.log('DB selected')
 
-      const sql = 'CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255)) IF NOT EXISTS'
+      const sql = 'CREATE TABLE IF NOT EXISTS customers (name VARCHAR(255), address VARCHAR(255))'
       con.query(sql, function (err) {
         if (err) throw err
         console.log('Table created')
