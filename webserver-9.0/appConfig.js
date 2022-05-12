@@ -158,7 +158,7 @@ class AppConfig {
       // katalog dla plików
       this.filePath = value.FILEDIR || 'files'
       // listening port
-      this.appPort = value.PORT || 8081
+      this.appPort = value.PORT || 8001
       // autentykacja
       this.username = value.USERNAME || 'student'
       this.password = value.PASSWORD || 'student'
