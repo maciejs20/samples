@@ -18,12 +18,12 @@ const initDB = function (con) {
     if (err) throw err
     console.log('Database created')
 
-    const sql = 'USE DATABASE testdb'
+    const sql = 'USE testdb'
     con.query(sql, function (err) {
       if (err) throw err
       console.log('DB selected')
 
-      const sql = 'CREATE TABLE IF NOT EXISTS customers (name VARCHAR(255), address VARCHAR(255))'
+      const sql = 'CREATE TABLE IF NOT EXISTS customers (name VARCHAR(255), address VARCHAR(255)) '
       con.query(sql, function (err) {
         if (err) throw err
         console.log('Table created')
