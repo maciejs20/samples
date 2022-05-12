@@ -132,7 +132,7 @@ const processRequest = function (request, response) {
       while (true) {
       }
     case 'db':
-      db.getCustomer(urlPath)
+      db.getCust(urlPath)
       break
     default:
       serveFile(urlExt, urlPath, targetFile, response)
