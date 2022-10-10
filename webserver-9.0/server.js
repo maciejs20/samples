@@ -1,3 +1,5 @@
+const instana = require('@instana/collector');
+instana();
 // wymagane przez aplikację moduły nodejs
 // nalezy je zainstalować aby aplikacja działała poprawnie
 // ---------------------------------------------------------
@@ -66,4 +68,4 @@ db.init()
 console.log(
   `Starting nodejs server on port ${appConfig.appPort} serving files from "${appConfig.filePath}"`
 )
-server.listen(appConfig.appPort)
+server.listen(appConfig.appPort,'0.0.0.0')

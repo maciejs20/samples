@@ -4,6 +4,12 @@ const mysql = require('mysql')
 
 let con
 
+const send200 = function (response) {
+  response.writeHead(200, {
+    'Content-Type': 'text/html;charset=utf8'
+  })
+}
+
 const insertCustomer = function (name, address) {
   const sql = "INSERT INTO customers (name, address) VALUES ('" + name + "', '" + address + "')"
   con.query(sql, function (err) {
@@ -44,7 +50,7 @@ const init = function () {
   con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Passw0rd'
+    password: 'Passw0rd1234'
   })
 
   con.connect(function (err) {
@@ -54,11 +60,16 @@ const init = function () {
   })
 }
 
-const getCust = function (name) {
-  console.log(`getCust for ${name}`)
-  con.query('SELECT * FROM customers WHERE name=' + name, function (err, result) {
-    if (err) throw err
+const getCust = function (response) {
+  console.log(`getCust`)
+  con.query('SELECT * FROM customers' , function (err, result) {
+  if (err) throw err
     console.log(result)
+
+  send200(response)
+  response.write('Database dump:')
+  response.write(JSON.stringify(result))
+  response.end()
   })
 }
 

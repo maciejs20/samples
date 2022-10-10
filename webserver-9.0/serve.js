@@ -38,11 +38,11 @@ const send200 = function (response) {
   })
 }
 
-// const send503 = function (response) {
-//   response.writeHead(503, {
-//     'Content-Type': 'text/html;charset=utf8'
-//   })
-// }
+ const send503 = function (response) {
+   response.writeHead(503, {
+     'Content-Type': 'text/html;charset=utf8'
+   })
+ }
 
 const send404 = function (response) {
   response.writeHead(404, {
@@ -123,6 +123,12 @@ const processRequest = function (request, response) {
     case 'readiness':
       info.readinessProbe(response)
       break
+   case 'error':
+      send503(response)
+      response.write('Generic error has happened.')
+      console.error('Generic error in my app has happened.')
+      response.end()
+      break
     case 'hang':
       // hang app
       send200(response)
@@ -132,7 +138,7 @@ const processRequest = function (request, response) {
       while (true) {
       }
     case 'db':
-      db.getCust(urlPath)
+      db.getCust(response)
       break
     default:
       serveFile(urlExt, urlPath, targetFile, response)
