@@ -54,8 +54,8 @@ const initDB = function (con) {
 const init = function () {
   con = mysql.createConnection({
     host: 'localhost',
-    user: 'root',
-    password: 'Passw0rd1234'
+    user: appConfig.dbuser,
+    password: appConfig.dbpass
   })
 
   con.connect(function (err) {
