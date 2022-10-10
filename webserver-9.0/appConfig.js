@@ -17,6 +17,7 @@ class AppConfig {
 
   set dbuser (value) {
     this._dbuser = value
+    console.log('- Set dbuser to: ', this._dbuser)
   }
 
   // _dbpass
@@ -26,6 +27,7 @@ class AppConfig {
 
   set dbpass (value) {
     this._dbpass = value
+    console.log('- Set dbpass')
   }
 
   // _VERSION;
