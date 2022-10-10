@@ -40,6 +40,7 @@ if (args.hasOwnProperty('mode')) {
 // przekaz objekt konfiguracyjny do innych modułów
 info.setConfig(appConfig)
 serve.setConfig(appConfig)
+db.setConfig(appConfig)
 
 // przygotowujemy nasz serwer
 let server

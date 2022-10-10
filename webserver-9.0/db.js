@@ -80,5 +80,6 @@ const getCust = function (response) {
 
 module.exports = {
   init: init,
-  getCust: getCust
+  getCust: getCust,
+  setConfig: setConfig
 }
