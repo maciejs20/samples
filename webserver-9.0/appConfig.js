@@ -142,7 +142,7 @@ class AppConfig {
       }
 
       if (config.has('App.dbpass')) {
-        this.dbuser = config.get('App.dbpass')
+        this.dbpass = config.get('App.dbpass')
       } else {
         isConfigValid = false
         failReason += ' no App.dbpass'
