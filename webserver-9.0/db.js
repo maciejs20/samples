@@ -4,6 +4,11 @@ const mysql = require('mysql')
 
 let con
 
+let appConfig
+const setConfig = function (value) {
+  appConfig = value
+}
+
 const send200 = function (response) {
   response.writeHead(200, {
     'Content-Type': 'text/html;charset=utf8'

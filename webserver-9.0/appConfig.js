@@ -10,6 +10,24 @@ const APPVERSION = '8.1'
 class AppConfig {
   // ustawienia z pliku muszą być zapisane w config/default.json
 
+  // _dbuser
+  get dbuser () {
+    return (this._dbuser)
+  }
+
+  set dbuser (value) {
+    this._dbuser = value
+  }
+
+  // _dbpass
+  get dbpass () {
+    return (this._dbpass)
+  }
+
+  set dbpass (value) {
+    this._dbpass = value
+  }
+
   // _VERSION;
   get VERSION () {
     return this._VERSION
@@ -112,6 +130,21 @@ class AppConfig {
       let isConfigValid = true
       // failure message
       let failReason = ''
+
+
+      if (config.has('App.dbuser')) {
+        this.dbuser = config.get('App.dbuser')
+      } else {
+        isConfigValid = false
+        failReason += ' no App.dbuser'
+      }
+
+      if (config.has('App.dbpass')) {
+        this.dbuser = config.get('App.dbpass')
+      } else {
+        isConfigValid = false
+        failReason += ' no App.dbpass'
+      }
 
       if (config.has('App.filePath')) {
         this.filePath = config.get('App.filePath')
